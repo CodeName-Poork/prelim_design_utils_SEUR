@@ -42,7 +42,7 @@ $$
 \begin{equation}
 \left\{\begin{matrix}
  m(\dot v + ur) = F_{y1} + F_{y2}\\\\
-I \dot r = a F_{y1} + F_{y2}
+I \dot r = a F_{y1} + bF_{y2}
 \end{matrix}\right.
 \end{equation}
 $$
