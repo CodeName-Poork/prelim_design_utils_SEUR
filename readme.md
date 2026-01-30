@@ -40,10 +40,10 @@ The equations of motion of the simple bicycle model for $v$ and $r$  now read
 
 $$
 \begin{equation}
-\left\{\begin{matrix}
+\begin{cases}
  m(\dot v + ur) = F_{y1} + F_{y2}\\\\
 I \dot r = a F_{y1} + bF_{y2}
-\end{matrix}\right.
+\end{cases}
 \end{equation}
 $$
 
@@ -53,10 +53,10 @@ $F_{y1}$ and $F_{y2}$ are the functions of side slip angles, and
 
 $$
 \begin{equation}
-\left\{\begin{matrix}
+\begin{cases}
 F_{y1} = F_{y1}(\alpha_1)\\\\
 F_{y2} = F_{y2}(\alpha_2)
-\end{matrix}\right.
+\end{cases}
 \end{equation}
 $$
 
@@ -64,11 +64,10 @@ as mentioned in our case $Fy = magicBCDE(\alpha,...()))$. Whereas $\alpha_1$ and
 
 $$
 \begin{equation}
-\left\{\begin{matrix}
-\alpha_1 = \delta - \frac{1}{u}(v+ar)\\
-\\
-\alpha_2 = - \frac{1}{u}(v-br)
-\end{matrix}\right.
+\begin{cases}
+    \alpha_1 = \delta - \beta + \frac{l_a \cdot a_y}{V_x^2} \\
+    \alpha_2 = -\frac{1}{u}(v - br)
+\end{cases}
 \end{equation}
 $$
 
@@ -82,11 +81,11 @@ then the equations above can be expressed
 
 $$
 \begin{equation}
-\left\{\begin{matrix}
+\begin{cases}
 \alpha_1 = \delta - \beta + l_a * a_y/V_x^2)\\
 \\
 \alpha_2 = - \frac{1}{u}(v-br)
-\end{matrix}\right.
+\end{cases}
 \end{equation}
 $$
 
