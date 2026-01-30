@@ -1,6 +1,10 @@
-### Tire Model Reference
+# Preliminary Full Vehicle Design Utilities for SEUR
+## Preface
+Here contains a light weight toolset with the aim to design the most basic parameters from scratch, using nothing but a non-linear bicycle model and some of the classic method focusing on the pure lateral dynamics of a passive race car. Up till Jan. 2026 this repo is not licensed since I couldn't decide what license to use. So technically it's not open sourced (yet).
 
-For consistency of the script, the following version of the tire magic formula[1] is enforced to express lateral performance of a axle/tire during pure sideslip condition across various loadcases
+## 1 Tire and Axle Characteristic
+### 1.1 Tire Model Reference
+For consistency of the script, the following version of the tire magic formula [^pacejka] is enforced to express lateral performance of a axle/tire during pure sideslip condition across various loadcases
 
 $$
 \begin{equation}
@@ -32,9 +36,32 @@ $$
 F_y = magicBCDE(\mu, c_1, c_2, C, E, \alpha, F_z)
 $$
 
-### Solotuion for Yaw Moment
+### 1.2 Axle Characteristic
+The so-call axle characteristic is inspired by "Exercise 1.1 Construction of Effective Axle Characteristics at Load Transfer" from the pacejka book [^pacejka].
 
-#### Bicycle Model
+The idea of achieving axle characteristic is simple: For each axle, its total lateral force generated is a function of side slip angle $\alpha$, and the load transferred on that axle $\Delta F_z$. We assume the load transfer of a given axle is proportional to the total lateral force $F_{y,axle}$ it generated. 
+
+$$
+\begin{equation}
+\begin{cases}
+F_{y,axle} = f(\alpha, \Delta F_z)\\\\
+\Delta F_z = K* F_{y,axle}
+\end{cases}
+\end{equation}
+$$
+
+Now, two discussions emerged: 
+1. Will the load transferred  $\Delta F_z$ always be proportional to axle lateral force $F_{y,axle}$ ?
+1. How are we supposed to define $K$?
+
+The answer to the first question is simple: NO, but no bother. Of course in transient and also due to the complicated dynamics happened in real world it's almost impossible that their relation stays proportional, but bear in mind that A. most of the follow-up test are expressed in steady state or at least in some sort of equilibrium; and B. we are doing a preliminary observation of the characteristic of a car --- if you have a 14 DoF model, go and run your 14 DoF model.
+The answer to the second question is ambiguous: ideally, if the car is perfectly balanced in terms of roll stiffness front and rear, the coefficient would be due to the trackwidth and CGh of front and rear part of the vehicle. The "axle_cal.m" takes trackwidth and CGh to calculate the axle characteristic. You can also try to input values other than the true value of CGh to simulate the distribution of the roll stiffness, but bear in mind that for now the script doesn't check if the total load transfer adds up eventually, and this is to be checked by the users themselves.
+
+
+
+## 2 Yaw Moment Diagram
+The concept and idea of a yaw moment diagram (YMD) is quite of a fascinating concept, for it reveals a vehicle's characteristic in both handling in linear region and its limit capability for yaw and lat. acc. It's thoroughly explained in both RCVD [^RCVD] and pacejka book [^pacejka]
+### 2.1 Bicycle Model
 
 The equations of motion of the simple bicycle model for $v$ and $r$  now read
 
@@ -65,7 +92,7 @@ as mentioned in our case $Fy = magicBCDE(\alpha,...()))$. Whereas $\alpha_1$ and
 $$
 \begin{equation}
 \begin{cases}
-    \alpha_1 = \delta - \beta + \frac{l_a \cdot a_y}{V_x^2} \\
+    \alpha_1 = \delta - \beta + \frac{l_a \cdot a_y}{V_x^2} \\\\
     \alpha_2 = -\frac{1}{u}(v - br)
 \end{cases}
 \end{equation}
@@ -89,4 +116,14 @@ $$
 \end{equation}
 $$
 
-#### Lateral Acc. and Yaw Moment
+### 2.2 Solution for Lateral Acc. and Yaw Moment
+
+The
+
+
+## Handling Curve
+
+
+## Reference
+[^rcvd]: Milliken, W. F., & Milliken, D. L. (1995). *Race Car Vehicle Dynamics*. Society of Automotive Engineers.
+[^pacejka]: Pacejka, H. B. (2012). *Tire and Vehicle Dynamics* (3rd ed.). Elsevier.
