@@ -16,14 +16,20 @@ $$
 
 $$
 \begin{equation}
-B = c_{F\alpha}/(C\mu)
+B = C_{F\alpha}/(CD)
+\end{equation}
+$$
+
+$$
+\begin{equation}
+C_{F\alpha} = c_1(sin[2arctan\{F_z/c_2\}])
 \end{equation}
 $$
 
 The above function of the equation is packed inside the funciton "magicBCED.m"
 
 $$
-F_y = magicBCDE(\mu, c_{F\alpha}, C, E, \alpha, F_z)
+F_y = magicBCDE(\mu, c_1, c_2, C, E, \alpha, F_z)
 $$
 
 ### Solotuion for Yaw Moment
