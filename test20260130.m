@@ -15,7 +15,7 @@ veh_2.Izz = 120;
 tire_43075.mu = 1.3143;
 tire_43075.c1 = 2.9583e+04;
 tire_43075.c2 = 779.5220;
-tire_43075.C =  1.1337;
+tire_43075.C =  1.45;
 tire_43075.E = -0.3051;
 
 veh_1.fz_front = 9.8 * veh_1.m * (veh_1.l - veh_1.a) / veh_1.l;

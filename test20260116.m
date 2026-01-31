@@ -14,15 +14,15 @@ veh_2.Izz = 120;
 
 tire_A.mu = 1;
 tire_A.c1 = 60000;
-tire_A.c2 = 4000;
+tire_A.c2 = 8000;
 tire_A.C = 1.3;
-tire_A.E = -3;
+tire_A.E = -2;
 
 tire_B.mu = 1;
-tire_B.c1 = 40000;
-tire_B.c2 = 4000;
-tire_B.C = 1.3;
-tire_B.E = -3;
+tire_B.c1 = 80000;
+tire_B.c2 = 9000;
+tire_B.C = 5;
+tire_B.E = 3;
 
 veh_1.fz_front = 9.8 * veh_1.m * (veh_1.l - veh_1.a) / veh_1.l;
 veh_1.fz_rear = 9.8 * veh_1.m * (veh_1.a) / veh_1.l;
@@ -51,11 +51,15 @@ veh_1.rear = fitBCDE(veh_1.raw_data.rear.alpha, veh_1.raw_data.rear.Fy, veh_2.fz
 % front axle BCDE
 [veh_2.raw_data.front.alpha, veh_2.raw_data.front.Fy] = axleCal(veh_2, tire_A, "front", 1200, 330, 1,40);
 veh_2.front = fitBCDE(veh_2.raw_data.front.alpha, veh_2.raw_data.front.Fy, veh_2.fz_front);
-
+%%
 % rear axle BCDE
 [veh_2.raw_data.rear.alpha, veh_2.raw_data.rear.Fy] = axleCal(veh_2, tire_B, "rear", 1200, 330, 1,40);
 veh_2.rear = fitBCDE(veh_2.raw_data.rear.alpha, veh_2.raw_data.rear.Fy, veh_2.fz_rear);
 
+% figure
+% fy_2r = magicBCDE(veh_2.rear.mu, veh_2.rear.c1, veh_2.rear.c2, veh_2.rear.C, veh_2.rear.E, alpha_test, fz);
+% plot(alpha_test, fy_2r);hold on
+% plot(veh_2.raw_data.rear.alpha, veh_2.raw_data.rear.Fy);
 %% YMD
 delta = deg2rad( linspace( -20, 20, 17 ) );
 beta = deg2rad( linspace( -15, 15, 17 ) );
