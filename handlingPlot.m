@@ -3,10 +3,16 @@ mapmap = lines;
 figure(8808)
 p1 = plot(veh.handling_curve.x(:,1).',...
     veh.handling_curve.handle);hold on;
-p2 = plot(veh.handling_curve.x(:,3).',...
+p2 = plot(veh.handling_curve.x(:,2).',...
+    veh.handling_curve.handle);hold on;
+p3 = plot(veh.handling_curve.x(:,3).',...
+    veh.handling_curve.handle);hold on;
+p4 = plot(veh.handling_curve.x(:,4).',...
     veh.handling_curve.handle);hold on;
 p1.Color = mapmap(color_idx,:); p1.LineWidth = 1; p1.LineStyle = '-';
 p2.Color = mapmap(color_idx,:); p2.LineWidth = 1; p2.LineStyle = ':';
+p3.Color = mapmap(color_idx,:); p3.LineWidth = 1; p3.LineStyle = '--';
+p4.Color = mapmap(color_idx,:); p4.LineWidth = 1; p4.LineStyle = '-.';
 xlabel('[US grad.]<<----- L/R [rad] ----->[OS grad.]');
 ylabel('ay [m/s/s]');
 grid on;
